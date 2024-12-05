@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Lab - Pixel Style</title>
+    <title>Simple Way - Natural AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
         * {
             margin: 0;
             padding: 0;
@@ -14,69 +13,66 @@
         }
 
         :root {
-            --bg-color: #fafafa;
-            --primary: #FF4D4D;
-            --secondary: #4DC1FF;
-            --accent: #FFD93D;
-            --text: #2A2A2A;
+            --primary: #6366F1;    /* 明亮的靛蓝色 */
+            --secondary: #A78BFA;  /* 柔和的紫色 */
+            --accent: #F472B6;     /* 活力粉色 */
+            --surface: #F8FAFC;    /* 浅色背景 */
+            --text: #1E293B;       /* 深色文字 */
+            --gradient: linear-gradient(135deg, #6366F1, #A78BFA);
         }
 
         body {
-            font-family: 'Press Start 2P', system-ui;
-            background: var(--bg-color);
+            font-family: 'Quicksand', sans-serif;
+            background: var(--surface);
             color: var(--text);
-            overflow-x: hidden;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* 像素背景元素 */
-        .pixel-bg {
+        /* 有机形状背景 */
+        .organic-shape {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             z-index: -1;
-            background-image: 
-                linear-gradient(90deg, rgba(77, 193, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(rgba(77, 193, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
+            opacity: 0.1;
         }
 
-        /* 像素云朵装饰 */
-        .pixel-cloud {
-            position: absolute;
-            width: 60px;
-            height: 30px;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 
-                20px -10px 0 0 #fff,
-                40px 0 0 0 #fff,
-                60px -10px 0 0 #fff;
-            animation: floatCloud 20s linear infinite;
+        .shape-1 {
+            top: -10%;
+            left: -5%;
+            width: 50%;
+            height: 70%;
+            background: var(--primary);
+            opacity: 0.08;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 20s ease-in-out infinite alternate;
         }
 
-        .cloud1 { top: 15%; left: -100px; }
-        .cloud2 { top: 35%; left: -100px; animation-delay: -5s; }
-        .cloud3 { top: 55%; left: -100px; animation-delay: -10s; }
+        .shape-2 {
+            bottom: -20%;
+            right: -10%;
+            width: 60%;
+            height: 80%;
+            background: var(--accent);
+            opacity: 0.06;
+            border-radius: 50% 50% 30% 70% / 50% 30% 70% 60%;
+            animation: morph 25s ease-in-out infinite alternate-reverse;
+        }
 
-        @keyframes floatCloud {
-            from { transform: translateX(-100px); }
-            to { transform: translateX(calc(100vw + 100px)); }
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
         }
 
         /* 导航栏 */
         nav {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            background: rgba(248, 250, 252, 0.8);
             backdrop-filter: blur(10px);
-            border-bottom: 4px solid var(--text);
-            padding: 20px;
-            z-index: 1000;
+            z-index: 100;
         }
 
         .nav-container {
@@ -88,832 +84,365 @@
         }
 
         .logo {
-            font-size: 1.2em;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--text);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
         }
 
-        .logo-emoji {
-            font-size: 1.5em;
-            animation: jump 0.5s ease infinite alternate;
-        }
-
-        @keyframes jump {
-            to { transform: translateY(-5px); }
+        .logo::before {
+            content: "⚡";  /* 更改logo图标 */
+            font-size: 1.8rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 2rem;
         }
 
         .nav-links a {
             color: var(--text);
             text-decoration: none;
-            font-size: 0.8em;
-            padding: 8px 16px;
-            border: 2px solid transparent;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
             transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            background: var(--accent);
-            border: 2px solid var(--text);
-            transform: translateY(-2px);
+            background: var(--gradient);
+            color: white;
         }
 
-        /* 主容器 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 120px 20px 60px;
-        }
-
-        /* 标题部分 */
-        header {
-            text-align: center;
-            margin-bottom: 80px;
-            position: relative;
-        }
-
-        .pixel-title {
-            font-size: 3em;
-            color: var(--text);
-            text-shadow: 
-                4px 4px 0 var(--primary),
-                8px 8px 0 var(--secondary);
-            margin-bottom: 30px;
-            animation: pixelate 0.5s steps(2) infinite alternate;
-        }
-
-        @keyframes pixelate {
-            to { text-shadow: 
-                4px 4px 0 var(--secondary),
-                8px 8px 0 var(--primary);
-            }
-        }
-
-        .subtitle {
-            font-size: 0.9em;
-            color: var(--text);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* 团队网格 */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
-            position: relative;
-        }
-
-        .team-member {
-            background: white;
-            border: 4px solid var(--text);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .member-content {
-            position: relative;
-        }
-
-        .member-photo-container {
-            position: relative;
-            padding-top: 100%;
-            overflow: hidden;
-            background: var(--accent);
-        }
-
-        .member-photo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            image-rendering: pixelated;
-        }
-
-        .member-info {
-            padding: 15px;
-            background: white;
-            border-top: 4px solid var(--text);
-        }
-
-        .member-name {
-            font-size: 0.9em;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        .member-title {
-            font-size: 0.7em;
-            color: var(--secondary);
-            margin-bottom: 5px;
-        }
-
-        .member-education {
-            font-size: 0.6em;
-            color: var(--text);
-        }
-
-        /* 装饰性emoji */
-        .floating-emoji {
-            position: fixed;
-            font-size: 2em;
-            pointer-events: none;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @media (max-width: 768px) {
-            .pixel-title {
-                font-size: 2em;
-            }
-            .nav-links {
-                gap: 15px;
-            }
-            .nav-links a {
-                font-size: 0.7em;
-                padding: 6px 12px;
-            }
-        }
-
-        /* AI 相关的浮动元素 */
-        .ai-symbol {
-            position: fixed;
-            font-size: 1.2em;
-            pointer-events: none;
-            opacity: 0.7;
-            filter: blur(0.5px);
-            color: var(--secondary);
-        }
-
-        .binary-rain {
-            position: fixed;
-            color: var(--primary);
-            font-family: monospace;
-            font-size: 0.8em;
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        /* 新增的动画效果 */
-        @keyframes matrixRain {
-            0% { transform: translateY(-100%); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
-
-        @keyframes neuralPulse {
-            0% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 0.3; }
-            100% { transform: scale(1); opacity: 0.7; }
-        }
-
-        /* 新增团队成员的悬停效果 */
-        .team-member:hover::before {
-            content: "{ AI }";
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: var(--accent);
-            padding: 5px;
-            border: 2px solid var(--text);
-            font-size: 0.7em;
-            z-index: 2;
-        }
-
-        /* 首页样式 */
-        .section {
+        /* 主页部分 */
+        .hero {
             min-height: 100vh;
-            padding: 100px 20px;
-        }
-
-        .glitch-container {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .mega-title {
-            font-size: 5em;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
             position: relative;
-            display: inline-block;
-            color: var(--text);
-            text-shadow: 
-                2px 2px var(--primary),
-                -2px -2px var(--secondary);
+            overflow: hidden;
         }
 
-        .mega-title::before,
-        .mega-title::after {
-            content: attr(data-text);
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text);
+            line-height: 1.2;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: var(--text);
+        }
+
+        /* 特性部分 */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: "";
             position: absolute;
-            top: 0;
+            top: -100px;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 200px;
+            background: var(--surface);
+            border-radius: 50%;
+            transform: scaleX(1.5);
         }
 
-        .mega-title::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--primary);
-            animation: glitch-1 2s infinite linear alternate-reverse;
-        }
-
-        .mega-title::after {
-            left: -2px;
-            text-shadow: 2px 0 var(--secondary);
-            animation: glitch-2 3s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-1 {
-            0% { clip-path: inset(20% 0 30% 0); }
-            20% { clip-path: inset(60% 0 10% 0); }
-            40% { clip-path: inset(40% 0 50% 0); }
-            60% { clip-path: inset(80% 0 5% 0); }
-            80% { clip-path: inset(10% 0 70% 0); }
-            100% { clip-path: inset(30% 0 20% 0); }
-        }
-
-        @keyframes glitch-2 {
-            0% { clip-path: inset(15% 0 35% 0); }
-            20% { clip-path: inset(55% 0 15% 0); }
-            40% { clip-path: inset(45% 0 45% 0); }
-            60% { clip-path: inset(75% 0 10% 0); }
-            80% { clip-path: inset(15% 0 65% 0); }
-            100% { clip-path: inset(25% 0 25% 0); }
-        }
-
-        .terminal-text {
-            font-family: monospace;
-            font-size: 1.2em;
-            color: var(--secondary);
-            margin: 20px 0;
-        }
-
-        .manifesto {
-            max-width: 800px;
-            margin: 0 auto 80px;
-            text-align: center;
-        }
-
-        .typewriter-text {
-            font-size: 1.5em;
-            line-height: 1.8;
-            opacity: 0.7;
-            animation: fadeIn 1s forwards;
-            animation-delay: 1s;
-        }
-
-        .feature-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
             max-width: 1200px;
-            margin: 0 auto 60px;
+            margin: 0 auto;
+            position: relative;
         }
 
         .feature-card {
             background: rgba(255, 255, 255, 0.9);
-            border: 4px solid var(--text);
-            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 2rem;
             text-align: center;
-            transform: rotate(-2deg);
             transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: rotate(0deg);
+            transform: translateY(-10px);
         }
 
         .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .feature-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .fun-facts {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 60px;
-            flex-wrap: wrap;
-        }
-
-        .fact {
-            font-size: 1.2em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .highlight {
-            font-size: 2em;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .mega-title {
-                font-size: 3em;
-            }
-            .typewriter-text {
-                font-size: 1.2em;
-            }
-            .fun-facts {
-                gap: 20px;
-            }
-        }
-
-        /* 联系页面样式 */
-        .contact-section {
-            background: var(--bg-color);
-            padding-top: 120px;
-        }
-
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .contact-title {
-            text-align: center;
-            font-size: 3em;
-            margin-bottom: 40px;
-            color: var(--text);
-        }
-
-        .terminal-window {
-            background: #1a1a1a;
-            border-radius: 10px;
-            margin-bottom: 60px;
-            overflow: hidden;
-            border: 4px solid var(--text);
-        }
-
-        .terminal-header {
-            background: #2d2d2d;
-            padding: 10px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff5f56;
-        }
-
-        .dot:nth-child(2) {
-            background: #ffbd2e;
-        }
-
-        .dot:nth-child(3) {
-            background: #27c93f;
-        }
-
-        .terminal-content {
-            padding: 20px;
-            font-family: monospace;
-            color: #fff;
-            font-size: 1em;
-        }
-
-        .line {
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-
-        .prompt {
-            color: var(--neon-blue);
-            margin-right: 10px;
-        }
-
-        .blink {
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        .contact-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 4px solid var(--text);
-            padding: 30px;
-            text-align: center;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .contact-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .contact-card p {
-            color: var(--text);
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            .contact-title {
-                font-size: 2em;
-            }
-            .terminal-content {
-                font-size: 0.9em;
-            }
-        }
-
-        /* 添加section基础样式 */
-        .section {
-            min-height: 100vh;
-            padding: 120px 20px 60px;
+        /* 团队部分 */
+        .team {
+            padding: 8rem 2rem;
+            background: var(--surface);
             position: relative;
-        }
-
-        /* 确保container样式统一 */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        /* 添加活跃状态样式 */
-        .nav-links a.active {
-            background: var(--accent);
-            border: 2px solid var(--text);
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 30px;
-            position: relative;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .team-member {
-            position: relative;
-            background: rgba(255, 255, 255, 0.9);
-            border: 4px solid var(--text);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .member-content {
-            position: relative;
-        }
-
-        .member-photo-container {
-            position: relative;
-            padding-top: 100%;
-            overflow: hidden;
-            background: var(--accent);
+            text-align: center;
         }
 
         .member-photo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
             object-fit: cover;
-            image-rendering: pixelated;
+            border: none;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
         }
 
-        .member-info {
-            padding: 15px;
+        /* 联系部分 */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--surface);
+            position: relative;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
             background: white;
-            border-top: 4px solid var(--text);
+            padding: 3rem;
+            border-radius: 2rem;
         }
 
-        .member-name {
-            font-size: 1.2em;
-            margin-bottom: 8px;
-            color: var(--primary);
-            font-weight: bold;
+        .form-group {
+            margin-bottom: 2rem;
         }
 
-        .member-title {
-            font-size: 0.9em;
-            color: var(--secondary);
-            margin-bottom: 5px;
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 1rem;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
-        .member-education {
-            font-size: 0.8em;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 通用标题样式 */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
             color: var(--text);
         }
 
-        /* 响应式调整 */
-        @media (max-width: 768px) {
-            .team-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                gap: 20px;
-            }
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards;
+        }
 
-            .member-name {
-                font-size: 1em;
-            }
-
-            .member-title {
-                font-size: 0.8em;
-            }
-
-            .member-education {
-                font-size: 0.7em;
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <div class="pixel-bg"></div>
-    <div class="pixel-cloud cloud1"></div>
-    <div class="pixel-cloud cloud2"></div>
-    <div class="pixel-cloud cloud3"></div>
+    <div class="organic-shape shape-1"></div>
+    <div class="organic-shape shape-2"></div>
 
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">
-                <!-- <span class="logo-emoji">🎮</span> -->
-                SIMPLE WAY
-            </a>
+            <a href="#" class="logo">SIMPLE WAY</a>
             <div class="nav-links">
                 <a href="#home">首页</a>
+                <a href="#features">特性</a>
                 <a href="#team">团队</a>
                 <a href="#contact">联系我们</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="section">
-        <div class="container">
-            <div class="glitch-container">
-                <h1 class="mega-title" data-text="SIMPLE WAY">SIMPLE WAY</h1>
-                <div class="terminal-text">
-                    > Hello World!<br>
-                    > Loading team profile...<br>
-                    > Access granted_
-                </div>
-            </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">智能引擎<br>驱动未来</h1>
+            <p class="hero-subtitle fade-in">
+                突破性的AI解决方案，<br>
+                让效率提升触手可及
+            </p>
+            <a href="#contact" class="btn fade-in">开启合作</a>
+        </div>
+    </section>
 
-            <div class="manifesto">
-                <!-- 首页内容保持不变 -->
+    <section id="features" class="features">
+        <h2 class="section-title">我们的优势</h2>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">⚡</div>
+                <h3>极速响应</h3>
+                <p>毫秒级的AI决策系统，让每一个选择都恰到好处</p>
             </div>
-
-            <div class="feature-grid">
-                <!-- 特性卡片保持不变 -->
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🎯</div>
+                <h3>精准智能</h3>
+                <p>深度学习模型，提供最优化的解决方案</p>
             </div>
-
-            <div class="fun-facts">
-                <!-- 趣味数据保持不变 -->
+            <div class="feature-card fade-in">
+                <div class="feature-icon">✨</div>
+                <h3>简单优雅</h3>
+                <p>复杂运算后台处理，简单直观的用户体验</p>
             </div>
         </div>
     </section>
 
-    <section id="team" class="section">
-        <div class="container">
-            <header>
-                <h1 class="pixel-title">AI CREW</h1>
-                <p class="subtitle">探索AI的无限可能 🚀</p>
-            </header>
-
-            <div class="team-grid">
-                <!-- 团队成员1 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="张明" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">张明 🤖</div>
-                            <div class="member-title">AI研究主管</div>
-                            <div class="member-education">MIT AI博士</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 团队成员2 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="李华" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">李华 💡</div>
-                            <div class="member-title">LLM专家</div>
-                            <div class="member-education">斯坦福大学 CS博士</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 团队成员3 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="王芳" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">王芳 🔮</div>
-                            <div class="member-title">机器学习工程师</div>
-                            <div class="member-education">CMU 机器学习硕士</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 团队成员4 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="陈杰" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">陈杰 🎯</div>
-                            <div class="member-title">计算机视觉专家</div>
-                            <div class="member-education">伯克利 CV博士</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 团队成员5 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="林小月" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">林小月 ⚡</div>
-                            <div class="member-title">全栈工程师</div>
-                            <div class="member-education">卡内基梅隆大学 CS硕士</div>
-                        </div>
-                    </div>
-                </div>
+    <section id="team" class="team">
+        <h2 class="section-title">创新团队</h2>
+        <div class="team-grid">
+            <div class="team-member fade-in">
+                <img src="https://source.unsplash.com/random/400x400?tech=1" alt="张明" class="member-photo">
+                <h3>张明</h3>
+                <p>AI算法专家</p>
+            </div>
+            <div class="team-member fade-in">
+                <img src="https://source.unsplash.com/random/400x400?tech=2" alt="李华" class="member-photo">
+                <h3>李华</h3>
+                <p>深度学习工程师</p>
+            </div>
+            <div class="team-member fade-in">
+                <img src="https://source.unsplash.com/random/400x400?tech=3" alt="王芳" class="member-photo">
+                <h3>王芳</h3>
+                <p>AI系统架构师</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section contact-section">
-        <div class="contact-container">
-            <h2 class="contact-title">CONNECT WITH US</h2>
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <div class="terminal-content">
-                    <div class="line">
-                        <span class="prompt">$</span> whoami
-                    </div>
-                    <div class="line">
-                        A team of AI enthusiasts who keep things simple
-                    </div>
-                    <div class="line">
-                        <span class="prompt">$</span> pwd
-                    </div>
-                    <div class="line">
-                        /home/simple-way/contact
-                    </div>
-                    <div class="line">
-                        <span class="prompt">$</span> cat contact_info.txt
-                    </div>
-                    <div class="line">
-                        📍 Location: Beijing, China
-                    </div>
-                    <div class="line">
-                        📧 Email: hello@simpleway.ai
-                    </div>
-                    <div class="line">
-                        🌐 Web: www.simpleway.ai
-                    </div>
-                    <div class="line">
-                        <span class="prompt">$</span> echo "Let's build something cool together!" 
-                    </div>
-                    <div class="line blink">_</div>
-                </div>
+    <section id="contact" class="contact">
+        <h2 class="section-title">联系我们</h2>
+        <form class="contact-form fade-in">
+            <div class="form-group">
+                <input type="text" placeholder="您的姓名" required>
             </div>
-
-            <div class="contact-cards">
-                <div class="contact-card">
-                    <div class="card-icon">💡</div>
-                    <h3>创意合作</h3>
-                    <p>有趣的想法？让我们一起把它变成现实</p>
-                </div>
-                <div class="contact-card">
-                    <div class="card-icon">🤝</div>
-                    <h3>加入我们</h3>
-                    <p>喜欢简单？我们正在寻找同道中人</p>
-                </div>
-                <div class="contact-card">
-                    <div class="card-icon">🎮</div>
-                    <h3>技术交流</h3>
-                    <p>让我们来场头脑风暴</p>
-                </div>
+            <div class="form-group">
+                <input type="email" placeholder="电子邮箱" required>
             </div>
-        </div>
+            <div class="form-group">
+                <textarea rows="5" placeholder="请描述您的需求..." required></textarea>
+            </div>
+            <button type="submit" class="btn">发送信息</button>
+        </form>
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 获取所有导航链接
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            // 为每个链接添加点击事件
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    
-                    // 获取目标部分的id
-                    const targetId = link.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    
-                    if (targetSection) {
-                        // 平滑滚动到目标部分
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-
-                        // 更新URL（可选）
-                        history.pushState(null, '', link.getAttribute('href'));
-
-                        // 添加活跃状态样式
-                        navLinks.forEach(l => l.classList.remove('active'));
-                        link.classList.add('active');
-                    }
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
             });
+        });
 
-            // 滚动监听，更新导航状态
-            window.addEventListener('scroll', () => {
-                const sections = document.querySelectorAll('.section');
-                let currentSection = '';
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1
+        };
 
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= (sectionTop - sectionHeight/3)) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-
-                // 更新导航栏活跃状态
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSection}`) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // 初始化页面位置（处理直接访问带hash的URL）
-            if (window.location.hash) {
-                const targetSection = document.querySelector(window.location.hash);
-                if (targetSection) {
-                    setTimeout(() => {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }, 100);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
-            }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
         });
     </script>
 </body>
