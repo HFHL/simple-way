@@ -678,7 +678,7 @@
             background: rgba(255, 255, 255, 0.9);
             border: 3px solid var(--text);
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
             transition: transform 0.3s ease;
             position: relative;
@@ -692,43 +692,64 @@
         .intro-card.main {
             grid-column: 1 / -1;
             background: var(--primary);
-            color: white;
+            padding: 25px;
         }
 
-        .intro-card.main h2,
-        .intro-card.main p {
-            color: white;
-        }
-
-        .card-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .intro-card h2 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .intro-card h3 {
-            font-size: 1.2em;
+        .intro-card.main h2 {
+            font-size: 1.6em;
             margin-bottom: 12px;
-            color: var(--primary);
         }
 
-        .intro-card p {
+        .intro-card.main p {
             font-size: 0.9em;
-            line-height: 1.6;
-            color: var(--text);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
+        /* 移动端适配 */
         @media (max-width: 768px) {
             .intro-cards {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);  /* 平板上显示两列 */
+                gap: 15px;
+                padding: 0 15px;
             }
-            
+
             .intro-card.main {
-                grid-column: auto;
+                grid-column: 1 / -1;  /* 主卡片依然占满宽度 */
+                padding: 20px;
+            }
+
+            .intro-card.main h2 {
+                font-size: 1.3em;
+            }
+
+            .intro-card h3 {
+                font-size: 1em;
+            }
+
+            .intro-card p {
+                font-size: 0.8em;
+            }
+        }
+
+        /* 小屏幕手机适配 */
+        @media (max-width: 480px) {
+            .intro-cards {
+                grid-template-columns: 1fr;  /* 手机上显示单列 */
+                gap: 15px;
+            }
+
+            .intro-card {
+                padding: 15px;
+            }
+
+            .intro-card.main h2 {
+                font-size: 1.2em;
+            }
+
+            .intro-card.main p {
+                font-size: 0.8em;
+                line-height: 1.4;
             }
         }
 
