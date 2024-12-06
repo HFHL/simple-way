@@ -15,22 +15,22 @@
 
         :root {
             --bg-color: #fafafa;
-            --primary: #FF4D4D;
-            --secondary: #4DC1FF;
-            --accent: #FFD93D;
+            --primary: #333333;
+            --secondary: #666666;
+            --accent: #999999;
             --text: #2A2A2A;
         }
 
         body {
             font-family: 'Press Start 2P', system-ui;
-            background: var(--bg-color);
+            background: linear-gradient(to bottom right, #fafafa, #f0f0f0);
             color: var(--text);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
         /* 像素背景元素 */
-        .pixel-bg {
+        /* .pixel-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -41,30 +41,7 @@
                 linear-gradient(90deg, rgba(77, 193, 255, 0.1) 1px, transparent 1px),
                 linear-gradient(rgba(77, 193, 255, 0.1) 1px, transparent 1px);
             background-size: 20px 20px;
-        }
-
-        /* 像素云朵装饰 */
-        .pixel-cloud {
-            position: absolute;
-            width: 60px;
-            height: 30px;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 
-                20px -10px 0 0 #fff,
-                40px 0 0 0 #fff,
-                60px -10px 0 0 #fff;
-            animation: floatCloud 20s linear infinite;
-        }
-
-        .cloud1 { top: 15%; left: -100px; }
-        .cloud2 { top: 35%; left: -100px; animation-delay: -5s; }
-        .cloud3 { top: 55%; left: -100px; animation-delay: -10s; }
-
-        @keyframes floatCloud {
-            from { transform: translateX(-100px); }
-            to { transform: translateX(calc(100vw + 100px)); }
-        }
+        } */
 
         /* 导航栏 */
         nav {
@@ -282,28 +259,53 @@
             100% { transform: scale(1); opacity: 0.7; }
         }
 
-        /* 新增团队成员的悬停效果 */
-        .team-member:hover::before {
-            content: "{ AI }";
+        /* 修改团队成员的悬停效果 */
+        .team-member {
+            position: relative;
+        }
+
+        .team-member::before {
             position: absolute;
             top: -10px;
             right: -10px;
             background: var(--accent);
-            padding: 5px;
+            padding: 8px 12px;
             border: 2px solid var(--text);
             font-size: 0.7em;
             z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: pre-wrap;
+            max-width: 200px;
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .team-member:hover::before {
+            opacity: 1;
+        }
+
+        /* 为每个成员定制悬停内容 */
+        .team-member[data-member="alain"]::before {
+            content: "斯坦福大学计算机系毕业\A华为高级研发工程师\A丰富的团队管理与项目交付经验";
+        }
+
+        /* 为池纪君添加定制悬停内容 */
+        .team-member[data-member="chijj"]::before {
+            content: "算法竞赛获奖者\A多伦多大学交互媒体实验室研究员";
         }
 
         /* 首页样式 */
         .section {
             min-height: 100vh;
-            padding: 100px 20px;
+            padding: 80px 20px;
+            position: relative;
         }
 
         .glitch-container {
             text-align: center;
-            margin-bottom: 60px;
+            padding: 0;
+            margin: 0;
         }
 
         .mega-title {
@@ -446,7 +448,7 @@
         /* 联系页面样式 */
         .contact-section {
             background: var(--bg-color);
-            padding-top: 120px;
+            padding-top: 100px;
         }
 
         .contact-container {
@@ -565,7 +567,7 @@
         /* 添加section基础样式 */
         .section {
             min-height: 100vh;
-            padding: 120px 20px 60px;
+            padding: 60px 20px 40px;
             position: relative;
         }
 
@@ -643,7 +645,7 @@
             color: var(--text);
         }
 
-        /* 响应式调整 */
+        /* 应式调整 */
         @media (max-width: 768px) {
             .team-grid {
                 grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -662,14 +664,211 @@
                 font-size: 0.7em;
             }
         }
+
+        .intro-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .intro-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid var(--text);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .intro-card.main {
+            grid-column: 1 / -1;
+            background: var(--primary);
+            color: white;
+        }
+
+        .intro-card.main h2,
+        .intro-card.main p {
+            color: white;
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .intro-card h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .intro-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .intro-card p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .intro-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-card.main {
+                grid-column: auto;
+            }
+        }
+
+        /* 修改 team section 的 header 样式 */
+        #team header {
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        /* 修改 glitch-container 的样式，增加下边距 */
+        .glitch-container {
+            text-align: center;
+            margin-bottom: 120px;
+            padding-top: 60px;
+        }
+
+        /* 修改 section 的样式，让第一屏只显示标题 */
+        #home {
+            height: 100vh;
+            min-height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        /* 将intro-cards移动到第二屏 */
+        .intro-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 修改features section样式 */
+        #features {
+            min-height: auto;
+            padding: 60px 20px;
+            margin-top: 0;
+        }
+
+        /* 添加了解我们按钮的样式 */
+        .learn-more {
+            margin-top: 40px;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border: 3px solid var(--text);
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .learn-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: var(--text);
+        }
+
+        /* 修改首页布局，使按钮位置偏下 */
+        #home {
+            height: 100vh;
+            min-height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .glitch-container {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;  /* 占满整个视口高度 */
+            justify-content: center;  /* 垂直居中 */
+        }
+
+        /* 调整按钮位置 */
+        .learn-more {
+            position: absolute;
+            bottom: 15%;  /* 距离底部15% */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 添加平滑滚动效果 */
+        html {
+            scroll-behavior: smooth;  /* 添加平滑滚动 */
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border: 3px solid var(--text);
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .learn-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: var(--text);
+        }
+
+        /* 修改团队标题样式 */
+        #team .pixel-title {
+            font-size: 3em;
+            color: var(--text);  /* 深色文字 */
+            text-shadow: 
+                3px 3px 0 #ffffff,  /* 白色阴影 */
+                6px 6px 0 var(--primary);  /* 主题色阴影 */
+            margin-bottom: 30px;
+        }
+
+        /* 修改副标题样式，让它更加突出 */
+        #team .subtitle {
+            font-size: 0.9em;
+            color: var(--primary);  /* 使用主题色 */
+            max-width: 600px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
-    <div class="pixel-bg"></div>
-    <div class="pixel-cloud cloud1"></div>
-    <div class="pixel-cloud cloud2"></div>
-    <div class="pixel-cloud cloud3"></div>
-
+    <!-- <div class="pixel-bg"></div> -->
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">
@@ -688,23 +887,39 @@
         <div class="container">
             <div class="glitch-container">
                 <h1 class="mega-title" data-text="SIMPLE WAY">SIMPLE WAY</h1>
-                <div class="terminal-text">
-                    > Hello World!<br>
-                    > Loading team profile...<br>
-                    > Access granted_
+                <div class="learn-more">
+                    <a href="#features" class="learn-more-btn">了解我们</a>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="manifesto">
-                <!-- 首页内容保持不变 -->
-            </div>
-
-            <div class="feature-grid">
-                <!-- 特性卡片保持不变 -->
-            </div>
-
-            <div class="fun-facts">
-                <!-- 趣味数据保持不变 -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="intro-cards">
+                <div class="intro-card main">
+                    <div class="card-icon">🚀</div>
+                    <h2>AI技术引领者</h2>
+                    <p>深耕计算机视觉与大语言模型，为企业提供快速精准的AI解决方案</p>
+                </div>
+                
+                <div class="intro-card">
+                    <div class="card-icon">🤖</div>
+                    <h3>大语言模型应用</h3>
+                    <p>定制业级LLM模型打造智能对话与决策系统</p>
+                </div>
+                
+                <div class="intro-card">
+                    <div class="card-icon">👁️</div>
+                    <h3>计算机视觉技术</h3>
+                    <p>专业的视觉识别分析，解决工业检测与智能监控需求</p>
+                </div>
+                
+                <div class="intro-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>软件开发集成</h3>
+                    <p>快速交付完整解决方案，助力企业AI转型升级</p>
+                </div>
             </div>
         </div>
     </section>
@@ -712,21 +927,21 @@
     <section id="team" class="section">
         <div class="container">
             <header>
-                <h1 class="pixel-title">AI CREW</h1>
-                <p class="subtitle">探索AI的无限可能 🚀</p>
+                <h1 class="pixel-title">我们的团队</h1>
+                <p class="subtitle">探索无限可能</p>
             </header>
 
             <div class="team-grid">
                 <!-- 团队成员1 -->
-                <div class="team-member">
+                <div class="team-member" data-member="alain">
                     <div class="member-content">
                         <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="张明" class="member-photo">
+                            <img src="image/alain.jpg" alt="Alain" class="member-photo">
                         </div>
                         <div class="member-info">
-                            <div class="member-name">张明 🤖</div>
-                            <div class="member-title">AI研究主管</div>
-                            <div class="member-education">MIT AI博士</div>
+                            <div class="member-name">Alain 🚀</div>
+                            <div class="member-title">计算机工程师</div>
+                            <div class="member-education">Stanford University</div>
                         </div>
                     </div>
                 </div>
@@ -735,12 +950,12 @@
                 <div class="team-member">
                     <div class="member-content">
                         <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="李华" class="member-photo">
+                            <img src="image/barry.jpg" alt="Barry" class="member-photo">
                         </div>
                         <div class="member-info">
-                            <div class="member-name">李华 💡</div>
+                            <div class="member-name">Barry 💡</div>
                             <div class="member-title">LLM专家</div>
-                            <div class="member-education">斯坦福大学 CS博士</div>
+                            <div class="member-education">MIT</div>
                         </div>
                     </div>
                 </div>
@@ -749,26 +964,26 @@
                 <div class="team-member">
                     <div class="member-content">
                         <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="王芳" class="member-photo">
+                            <img src="image/xinyu.jpg" alt="王新宇" class="member-photo">
                         </div>
                         <div class="member-info">
-                            <div class="member-name">王芳 🔮</div>
-                            <div class="member-title">机器学习工程师</div>
-                            <div class="member-education">CMU 机器学习硕士</div>
+                            <div class="member-name">王新宇 🔮</div>
+                            <div class="member-title">算法工程师</div>
+                            <div class="member-education">McGill University</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 团队成员4 -->
-                <div class="team-member">
+                <div class="team-member" data-member="chijj">
                     <div class="member-content">
                         <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="陈杰" class="member-photo">
+                            <img src="image/chijj.jpg" alt="池纪君" class="member-photo">
                         </div>
                         <div class="member-info">
-                            <div class="member-name">陈杰 🎯</div>
-                            <div class="member-title">计算机视觉专家</div>
-                            <div class="member-education">伯克利 CV博士</div>
+                            <div class="member-name">池纪君 🔬</div>
+                            <div class="member-title">LLM算法工程师</div>
+                            <div class="member-education">University of Toronto · BUPT</div>
                         </div>
                     </div>
                 </div>
@@ -777,12 +992,12 @@
                 <div class="team-member">
                     <div class="member-content">
                         <div class="member-photo-container">
-                            <img src="https://via.placeholder.com/400x400" alt="林小月" class="member-photo">
+                            <img src="image/hailin.jpg" alt="何海林" class="member-photo">
                         </div>
                         <div class="member-info">
-                            <div class="member-name">林小月 ⚡</div>
+                            <div class="member-name">何海林 ⚡</div>
                             <div class="member-title">全栈工程师</div>
-                            <div class="member-education">卡内基梅隆大学 CS硕士</div>
+                            <div class="member-education">TFSWUFE</div>
                         </div>
                     </div>
                 </div>
@@ -792,7 +1007,7 @@
 
     <section id="contact" class="section contact-section">
         <div class="contact-container">
-            <h2 class="contact-title">CONNECT WITH US</h2>
+            <h2 class="contact-title">联系我们</h2>
             <div class="terminal-window">
                 <div class="terminal-header">
                     <span class="dot"></span>
@@ -807,16 +1022,13 @@
                         A team of AI enthusiasts who keep things simple
                     </div>
                     <div class="line">
-                        <span class="prompt">$</span> pwd
-                    </div>
-                    <div class="line">
-                        /home/simple-way/contact
-                    </div>
-                    <div class="line">
                         <span class="prompt">$</span> cat contact_info.txt
                     </div>
                     <div class="line">
-                        📍 Location: Beijing, China
+                        📍 Location: Chengdu, China
+                    </div>
+                    <div class="line">
+                        📧 Tel: (+86) 18188383927
                     </div>
                     <div class="line">
                         📧 Email: hello@simpleway.ai
@@ -840,7 +1052,7 @@
                 <div class="contact-card">
                     <div class="card-icon">🤝</div>
                     <h3>加入我们</h3>
-                    <p>喜欢简单？我们正在寻找同道中人</p>
+                    <p>怀才不遇？我们正在寻找同道中人</p>
                 </div>
                 <div class="contact-card">
                     <div class="card-icon">🎮</div>
