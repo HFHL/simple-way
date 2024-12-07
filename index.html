@@ -22,7 +22,7 @@
         }
 
         body {
-            font-family: 'Press Start 2P', system-ui;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(to bottom right, #fafafa, #f0f0f0);
             color: var(--text);
             overflow-x: hidden;
@@ -65,6 +65,7 @@
         }
 
         .logo {
+            font-family: 'Press Start 2P', system-ui;
             font-size: 1.2em;
             color: var(--text);
             text-decoration: none;
@@ -83,6 +84,7 @@
         }
 
         .nav-links {
+            font-family: 'Press Start 2P', system-ui;
             display: flex;
             gap: 30px;
         }
@@ -117,6 +119,7 @@
         }
 
         .pixel-title {
+            font-family: 'Press Start 2P', system-ui;
             font-size: 3em;
             color: var(--text);
             text-shadow: 
@@ -309,6 +312,7 @@
         }
 
         .mega-title {
+            font-family: 'Press Start 2P', system-ui;
             font-size: 5em;
             position: relative;
             display: inline-block;
@@ -841,7 +845,7 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            height: 100vh;  /* 占满整个���口高度 */
+            height: 100vh;  /* 占满整个口高度 */
             justify-content: center;  /* 垂直居中 */
         }
 
@@ -887,7 +891,7 @@
             margin-bottom: 30px;
         }
 
-        /* 修改副标���样式，让它更加突出 */
+        /* 修改副标样式，让它更加突出 */
         #team .subtitle {
             font-size: 0.9em;
             color: var(--primary);  /* 使用主题色 */
@@ -1053,6 +1057,69 @@
             background: var(--primary);
             color: white;
         }
+
+        .chat-input-container {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background: white;
+            display: flex;
+            gap: 10px;
+        }
+        
+        #chatInput {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9em;
+        }
+        
+        #sendMessage {
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #sendMessage:hover {
+            background: var(--text);
+        }
+
+        /* 加载动画样式 */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite;
+            opacity: 0.3;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingAnimation {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-4px); }
+        }
     </style>
 </head>
 <body>
@@ -1087,7 +1154,7 @@
             <div class="intro-cards">
                 <div class="intro-card main">
                     <div class="card-icon">🚀</div>
-                    <h2>AI技术引领者</h2>
+                    <h2>AI技术领者</h2>
                     <p>深耕计算机视觉与大语言模型，为企业提供快速精准的AI解决方案</p>
                 </div>
                 
@@ -1171,7 +1238,7 @@
                             <img src="image/chijj.jpg" alt="池纪君" class="member-photo">
                         </div>
                         <div class="member-info">
-                            <div class="member-name">池纪君 ����</div>
+                            <div class="member-name">池纪君 🔬</div>
                             <div class="member-education">北邮/多伦多大学硕士</div>
                             <div class="member-title">算法工程师/ACM亚洲区域赛银牌</div>
                         </div>
@@ -1249,10 +1316,10 @@
                         📞 Tel: (+86) 18188383927
                     </div>
                     <div class="line">
-                        📧 Email: hello@simpleway.ai
+                        📧 Email: feiyuzi51@gmail.com
                     </div>
                     <div class="line">
-                        🌐 Web: www.simpleway.ai
+                        🌐 Web: www.simpleway.xyz
                     </div>
                     <div class="line">
                         <span class="prompt">$</span> echo "Let's build something cool together!" 
@@ -1303,159 +1370,18 @@
             </div>
             <div class="message bot">
                 <div class="message-content chat-options">
-                    <div class="chat-option" data-option="team">了解我们团队</div>
+                    <div class="chat-option" data-option="team">了解simple way</div>
                     <div class="chat-option" data-option="projects">查看项目案例</div>
                     <div class="chat-option" data-option="contact">获取联系方式</div>
                 </div>
             </div>
         </div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="输入您的问题...">
+            <button id="sendMessage">发送</button>
+        </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 获取所有导航链接
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            // 为每个链接添加点击事件
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    
-                    // 获取目标部分的id
-                    const targetId = link.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    
-                    if (targetSection) {
-                        // 平滑滚动到目标部分
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-
-                        // 更新URL（可选）
-                        history.pushState(null, '', link.getAttribute('href'));
-
-                        // 添加活跃状态样式
-                        navLinks.forEach(l => l.classList.remove('active'));
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // 滚动监听，更新导航状态
-            window.addEventListener('scroll', () => {
-                const sections = document.querySelectorAll('.section');
-                let currentSection = '';
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= (sectionTop - sectionHeight/3)) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-
-                // 更新导航栏活跃状态
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSection}`) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // 初始化页面位置（处理直接访问带hash的URL）
-            if (window.location.hash) {
-                const targetSection = document.querySelector(window.location.hash);
-                if (targetSection) {
-                    setTimeout(() => {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }, 100);
-                }
-            }
-
-            const chatIcon = document.getElementById('chatIcon');
-            const chatBox = document.getElementById('chatBox');
-            const chatClose = document.getElementById('chatClose');
-
-            chatIcon.addEventListener('click', () => {
-                chatBox.style.display = 'flex';
-                chatIcon.style.display = 'none';
-            });
-
-            chatClose.addEventListener('click', () => {
-                chatBox.style.display = 'none';
-                chatIcon.style.display = 'flex';
-            });
-
-            // 添加聊天选项的点击处理
-            const chatMessages = document.querySelector('.chat-messages');
-            
-            chatMessages.addEventListener('click', (e) => {
-                const option = e.target.closest('.chat-option');
-                if (!option) return;
-
-                // 添加用户选择到聊天记录
-                const userMessage = document.createElement('div');
-                userMessage.className = 'message user';
-                userMessage.innerHTML = `<div class="message-content">${option.textContent}</div>`;
-                chatMessages.appendChild(userMessage);
-
-                // 根据选项返回相应的回复
-                setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.className = 'message bot';
-                    
-                    switch(option.dataset.option) {
-                        case 'team':
-                            botMessage.innerHTML = `
-                                <div class="message-content">
-                                    我们的团队由斯坦福、MIT、麦吉尔等海外名校毕业的AI专家组成。团队成员在大语言模型、计算机视觉等领域有深厚积累。您可以在我们的团队页面了解更多详情。
-                                    <div class="chat-options">
-                                        <div class="chat-option" data-option="projects">了解我们的项目</div>
-                                        <div class="chat-option" data-option="contact">联系我们</div>
-                                    </div>
-                                </div>
-                            `;
-                            break;
-                        case 'projects':
-                            botMessage.innerHTML = `
-                                <div class="message-content">
-                                    我们专注于AI技术的产业落地，主要项目包括：
-                                    • 企业级大语言模型定制
-                                    • 工业视觉检测系统
-                                    • 智能客服解决方案
-                                    
-                                    <div class="chat-options">
-                                        <div class="chat-option" data-option="contact">想了解更多细节？联系我们</div>
-                                    </div>
-                                </div>
-                            `;
-                            break;
-                        case 'contact':
-                            botMessage.innerHTML = `
-                                <div class="message-content">
-                                    您可以通过以下方式联系我们：
-                                    📞 电话：(+86) 18188383927
-                                    📧 邮箱：hello@simpleway.ai
-                                    🌐 官网：www.simpleway.ai
-                                    
-                                    期待与您的合作！
-                                </div>
-                            `;
-                            break;
-                    }
-                    
-                    chatMessages.appendChild(botMessage);
-                    // 滚动到底部
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 500);
-
-                // 滚动到底部
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            });
-        });
-    </script>
+    <script src="js/chat.js"></script>
 </body>
 </html>
