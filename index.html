@@ -841,7 +841,7 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            height: 100vh;  /* 占满整个视口高度 */
+            height: 100vh;  /* 占满整个���口高度 */
             justify-content: center;  /* 垂直居中 */
         }
 
@@ -887,12 +887,171 @@
             margin-bottom: 30px;
         }
 
-        /* 修改副标题样式，让它更加突出 */
+        /* 修改副标���样式，让它更加突出 */
         #team .subtitle {
             font-size: 0.9em;
             color: var(--primary);  /* 使用主题色 */
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        /* 聊天框样式 */
+        .chat-box {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 320px;
+            height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .chat-title {
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message.bot {
+            align-items: flex-start;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            border: 1px solid #e0e0e0;
+            color: var(--text);
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .chat-box {
+                width: calc(100% - 40px);
+                height: 400px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* 添加聊天图标样式 */
+        .chat-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-icon span {
+            font-size: 1.8em;
+        }
+
+        /* 修改聊天框样式 */
+        .chat-box {
+            position: fixed;
+            bottom: 100px;  /* 调整位置，避免与图标重叠 */
+            right: 30px;
+            width: 320px;
+            height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        /* 聊天选项样式 */
+        .chat-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-option {
+            padding: 8px 12px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .chat-option:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        /* 用户消息样式 */
+        .message.user {
+            align-items: flex-end;
+        }
+
+        .message.user .message-content {
+            background: var(--primary);
+            color: white;
         }
     </style>
 </head>
@@ -1012,7 +1171,7 @@
                             <img src="image/chijj.jpg" alt="池纪君" class="member-photo">
                         </div>
                         <div class="member-info">
-                            <div class="member-name">池纪君 🔬</div>
+                            <div class="member-name">池纪君 ����</div>
                             <div class="member-education">北邮/多伦多大学硕士</div>
                             <div class="member-title">算法工程师/ACM亚洲区域赛银牌</div>
                         </div>
@@ -1059,24 +1218,6 @@
                             <div class="member-title">数据管道工程师/Java后端开发工程师</div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="contact-cards">
-                <div class="contact-card">
-                    <div class="card-icon">💡</div>
-                    <h3>创意合作</h3>
-                    <p>有趣的想法？让我们一起把它变成现实</p>
-                </div>
-                <div class="contact-card">
-                    <div class="card-icon">🤝</div>
-                    <h3>加入我们</h3>
-                    <p>怀才不遇？我们正在寻找同道中人</p>
-                </div>
-                <div class="contact-card">
-                    <div class="card-icon">🎮</div>
-                    <h3>技术交流</h3>
-                    <p>让我们来场头脑风暴</p>
                 </div>
             </div>
         </div>
@@ -1139,6 +1280,36 @@
             </div>
         </div>
     </section>
+
+    <div class="chat-icon" id="chatIcon">
+        <span>💬</span>
+    </div>
+
+    <div class="chat-box" id="chatBox" style="display: none;">
+        <div class="chat-header">
+            <div class="chat-title">Simple Way AI</div>
+            <button class="chat-close" id="chatClose">×</button>
+        </div>
+        <div class="chat-messages">
+            <div class="message bot">
+                <div class="message-content">
+                    Hi，我们是simple way。一支由海内外精英组成的AI技术团队。
+                </div>
+            </div>
+            <div class="message bot">
+                <div class="message-content">
+                    请问您想了解什么？
+                </div>
+            </div>
+            <div class="message bot">
+                <div class="message-content chat-options">
+                    <div class="chat-option" data-option="team">了解我们团队</div>
+                    <div class="chat-option" data-option="projects">查看项目案例</div>
+                    <div class="chat-option" data-option="contact">获取联系方式</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1203,6 +1374,87 @@
                     }, 100);
                 }
             }
+
+            const chatIcon = document.getElementById('chatIcon');
+            const chatBox = document.getElementById('chatBox');
+            const chatClose = document.getElementById('chatClose');
+
+            chatIcon.addEventListener('click', () => {
+                chatBox.style.display = 'flex';
+                chatIcon.style.display = 'none';
+            });
+
+            chatClose.addEventListener('click', () => {
+                chatBox.style.display = 'none';
+                chatIcon.style.display = 'flex';
+            });
+
+            // 添加聊天选项的点击处理
+            const chatMessages = document.querySelector('.chat-messages');
+            
+            chatMessages.addEventListener('click', (e) => {
+                const option = e.target.closest('.chat-option');
+                if (!option) return;
+
+                // 添加用户选择到聊天记录
+                const userMessage = document.createElement('div');
+                userMessage.className = 'message user';
+                userMessage.innerHTML = `<div class="message-content">${option.textContent}</div>`;
+                chatMessages.appendChild(userMessage);
+
+                // 根据选项返回相应的回复
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'message bot';
+                    
+                    switch(option.dataset.option) {
+                        case 'team':
+                            botMessage.innerHTML = `
+                                <div class="message-content">
+                                    我们的团队由斯坦福、MIT、麦吉尔等海外名校毕业的AI专家组成。团队成员在大语言模型、计算机视觉等领域有深厚积累。您可以在我们的团队页面了解更多详情。
+                                    <div class="chat-options">
+                                        <div class="chat-option" data-option="projects">了解我们的项目</div>
+                                        <div class="chat-option" data-option="contact">联系我们</div>
+                                    </div>
+                                </div>
+                            `;
+                            break;
+                        case 'projects':
+                            botMessage.innerHTML = `
+                                <div class="message-content">
+                                    我们专注于AI技术的产业落地，主要项目包括：
+                                    • 企业级大语言模型定制
+                                    • 工业视觉检测系统
+                                    • 智能客服解决方案
+                                    
+                                    <div class="chat-options">
+                                        <div class="chat-option" data-option="contact">想了解更多细节？联系我们</div>
+                                    </div>
+                                </div>
+                            `;
+                            break;
+                        case 'contact':
+                            botMessage.innerHTML = `
+                                <div class="message-content">
+                                    您可以通过以下方式联系我们：
+                                    📞 电话：(+86) 18188383927
+                                    📧 邮箱：hello@simpleway.ai
+                                    🌐 官网：www.simpleway.ai
+                                    
+                                    期待与您的合作！
+                                </div>
+                            `;
+                            break;
+                    }
+                    
+                    chatMessages.appendChild(botMessage);
+                    // 滚动到底部
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 500);
+
+                // 滚动到底部
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
         });
     </script>
 </body>
