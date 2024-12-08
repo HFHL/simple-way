@@ -36,7 +36,7 @@ nav {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,22 +59,39 @@ main {
 }
 
 .nav-links {
-  display: flex;
-  gap: 2rem;
+    display: flex;
+    gap: 1.5rem;
 }
 
 .nav-links a {
-  color: var(--primary);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: calc(100% - 1.6rem);
 }
 
 .nav-links a:hover {
-  background-color: var(--light-gray);
+    background: var(--light-gray);
 }
 
 .logo {
@@ -200,7 +217,7 @@ main {
     background-color: var(--background);
 }
 
-/* 内容区域���样式 */
+/* 内容区域样式 */
 .about-content,
 .capabilities-content,
 .portfolio-content {
@@ -274,7 +291,7 @@ main {
     width: max-content;
 }
 
-/* ��整团队成员卡片样式 */
+/* 整团队成员卡片样式 */
 .team-member-compact {
     flex: 0 0 200px;
     background: var(--background);
@@ -404,7 +421,7 @@ main {
     color: white;
 }
 
-/* DX模块的颜色 - 使用柔和的绿色 */
+/* DX模���的颜色 - 使用柔和的绿色 */
 .capability-item:nth-child(3) .capability-icon {
     background: rgba(68, 190, 124, 0.15);
     color: rgb(68, 190, 124);
@@ -1304,5 +1321,17 @@ main {
 
     .trigger-text {
         text-align: center;
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
     }
 }
