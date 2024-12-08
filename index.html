@@ -3,1385 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Lab - Pixel Style</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-color: #fafafa;
-            --primary: #333333;
-            --secondary: #666666;
-            --accent: #999999;
-            --text: #2A2A2A;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(to bottom right, #fafafa, #f0f0f0);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* 像素背景元素 */
-        /* .pixel-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: 
-                linear-gradient(90deg, rgba(77, 193, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(rgba(77, 193, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-        } */
-
-        /* 导航栏 */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 4px solid var(--text);
-            padding: 20px;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Press Start 2P', system-ui;
-            font-size: 1.2em;
-            color: var(--text);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-emoji {
-            font-size: 1.5em;
-            animation: jump 0.5s ease infinite alternate;
-        }
-
-        @keyframes jump {
-            to { transform: translateY(-5px); }
-        }
-
-        .nav-links {
-            font-family: 'Press Start 2P', system-ui;
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.8em;
-            padding: 8px 16px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            background: var(--accent);
-            border: 2px solid var(--text);
-            transform: translateY(-2px);
-        }
-
-        /* 主容器 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 120px 20px 60px;
-        }
-
-        /* 标题部分 */
-        header {
-            text-align: center;
-            margin-bottom: 80px;
-            position: relative;
-        }
-
-        .pixel-title {
-            font-family: 'Press Start 2P', system-ui;
-            font-size: 3em;
-            color: var(--text);
-            text-shadow: 
-                4px 4px 0 var(--primary),
-                8px 8px 0 var(--secondary);
-            margin-bottom: 30px;
-            animation: pixelate 0.5s steps(2) infinite alternate;
-        }
-
-        @keyframes pixelate {
-            to { text-shadow: 
-                4px 4px 0 var(--secondary),
-                8px 8px 0 var(--primary);
-            }
-        }
-
-        .subtitle {
-            font-size: 0.9em;
-            color: var(--text);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* 团队网格 */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
-            position: relative;
-        }
-
-        .team-member {
-            background: white;
-            border: 4px solid var(--text);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .member-content {
-            position: relative;
-        }
-
-        .member-photo-container {
-            position: relative;
-            padding-top: 100%;
-            overflow: hidden;
-            background: var(--accent);
-        }
-
-        .member-photo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            image-rendering: pixelated;
-        }
-
-        .member-info {
-            padding: 15px;
-            background: white;
-            border-top: 4px solid var(--text);
-        }
-
-        .member-name {
-            font-size: 0.9em;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        .member-title {
-            font-size: 0.7em;
-            color: var(--secondary);
-            margin-bottom: 5px;
-        }
-
-        .member-education {
-            font-size: 0.6em;
-            color: var(--text);
-        }
-
-        /* 装饰性emoji */
-        .floating-emoji {
-            position: fixed;
-            font-size: 2em;
-            pointer-events: none;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @media (max-width: 768px) {
-            .pixel-title {
-                font-size: 2em;
-            }
-            .nav-links {
-                gap: 15px;
-            }
-            .nav-links a {
-                font-size: 0.7em;
-                padding: 6px 12px;
-            }
-        }
-
-        /* AI 相关的浮动元素 */
-        .ai-symbol {
-            position: fixed;
-            font-size: 1.2em;
-            pointer-events: none;
-            opacity: 0.7;
-            filter: blur(0.5px);
-            color: var(--secondary);
-        }
-
-        .binary-rain {
-            position: fixed;
-            color: var(--primary);
-            font-family: monospace;
-            font-size: 0.8em;
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        /* 新增的动画效果 */
-        @keyframes matrixRain {
-            0% { transform: translateY(-100%); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
-
-        @keyframes neuralPulse {
-            0% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 0.3; }
-            100% { transform: scale(1); opacity: 0.7; }
-        }
-
-        /* 修改团队成员的悬停效果 */
-        .team-member {
-            position: relative;
-        }
-
-        .team-member::before {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: var(--accent);
-            padding: 8px 12px;
-            border: 2px solid var(--text);
-            font-size: 0.7em;
-            z-index: 2;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            white-space: pre-wrap;
-            max-width: 200px;
-            text-align: left;
-            line-height: 1.4;
-        }
-
-        .team-member:hover::before {
-            opacity: 1;
-        }
-
-        /* 为每个成员定制悬停内容 */
-        .team-member[data-member="alain"]::before {
-            content: "斯坦福大学计算机系毕业\A华为高级研发工程师\A丰富的团队管理与项目交付经验";
-        }
-
-        /* 为池纪君添加定制悬停内容 */
-        .team-member[data-member="chijj"]::before {
-            content: "算法竞赛获奖者\A多伦多大学交互媒体实验室研究员";
-        }
-
-        /* 首页样式 */
-        .section {
-            min-height: 100vh;
-            padding: 80px 20px;
-            position: relative;
-        }
-
-        .glitch-container {
-            text-align: center;
-            padding: 0;
-            margin: 0;
-        }
-
-        .mega-title {
-            font-family: 'Press Start 2P', system-ui;
-            font-size: 5em;
-            position: relative;
-            display: inline-block;
-            color: var(--text);
-            text-shadow: 
-                2px 2px var(--primary),
-                -2px -2px var(--secondary);
-        }
-
-        .mega-title::before,
-        .mega-title::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .mega-title::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--primary);
-            animation: glitch-1 2s infinite linear alternate-reverse;
-        }
-
-        .mega-title::after {
-            left: -2px;
-            text-shadow: 2px 0 var(--secondary);
-            animation: glitch-2 3s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-1 {
-            0% { clip-path: inset(20% 0 30% 0); }
-            20% { clip-path: inset(60% 0 10% 0); }
-            40% { clip-path: inset(40% 0 50% 0); }
-            60% { clip-path: inset(80% 0 5% 0); }
-            80% { clip-path: inset(10% 0 70% 0); }
-            100% { clip-path: inset(30% 0 20% 0); }
-        }
-
-        @keyframes glitch-2 {
-            0% { clip-path: inset(15% 0 35% 0); }
-            20% { clip-path: inset(55% 0 15% 0); }
-            40% { clip-path: inset(45% 0 45% 0); }
-            60% { clip-path: inset(75% 0 10% 0); }
-            80% { clip-path: inset(15% 0 65% 0); }
-            100% { clip-path: inset(25% 0 25% 0); }
-        }
-
-        .terminal-text {
-            font-family: monospace;
-            font-size: 1.2em;
-            color: var(--secondary);
-            margin: 20px 0;
-        }
-
-        .manifesto {
-            max-width: 800px;
-            margin: 0 auto 80px;
-            text-align: center;
-        }
-
-        .typewriter-text {
-            font-size: 1.5em;
-            line-height: 1.8;
-            opacity: 0.7;
-            animation: fadeIn 1s forwards;
-            animation-delay: 1s;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto 60px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 4px solid var(--text);
-            padding: 30px;
-            text-align: center;
-            transform: rotate(-2deg);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: rotate(0deg);
-        }
-
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .fun-facts {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 60px;
-            flex-wrap: wrap;
-        }
-
-        .fact {
-            font-size: 1.2em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .highlight {
-            font-size: 2em;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .mega-title {
-                font-size: 3em;
-            }
-            .typewriter-text {
-                font-size: 1.2em;
-            }
-            .fun-facts {
-                gap: 20px;
-            }
-        }
-
-        /* 联系页面样式 */
-        .contact-section {
-            background: var(--bg-color);
-            padding-top: 100px;
-        }
-
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .contact-title {
-            text-align: center;
-            font-size: 3em;
-            margin-bottom: 40px;
-            color: var(--text);
-        }
-
-        .terminal-window {
-            background: #1a1a1a;
-            border-radius: 10px;
-            margin-bottom: 60px;
-            overflow: hidden;
-            border: 4px solid var(--text);
-        }
-
-        .terminal-header {
-            background: #2d2d2d;
-            padding: 10px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff5f56;
-        }
-
-        .dot:nth-child(2) {
-            background: #ffbd2e;
-        }
-
-        .dot:nth-child(3) {
-            background: #27c93f;
-        }
-
-        .terminal-content {
-            padding: 20px;
-            font-family: monospace;
-            color: #fff;
-            font-size: 1em;
-        }
-
-        .line {
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-
-        .prompt {
-            color: var(--neon-blue);
-            margin-right: 10px;
-        }
-
-        .blink {
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        .contact-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 4px solid var(--text);
-            padding: 30px;
-            text-align: center;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .contact-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .contact-card p {
-            color: var(--text);
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            .contact-title {
-                font-size: 2em;
-            }
-            .terminal-content {
-                font-size: 0.9em;
-            }
-        }
-
-        /* 添加section基础样式 */
-        .section {
-            min-height: 100vh;
-            padding: 60px 20px 40px;
-            position: relative;
-        }
-
-        /* 确保container样式统一 */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        /* 添加活跃状态样式 */
-        .nav-links a.active {
-            background: var(--accent);
-            border: 2px solid var(--text);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 30px;
-            position: relative;
-            margin-top: 40px;
-        }
-
-        .team-member {
-            position: relative;
-            background: rgba(255, 255, 255, 0.9);
-            border: 4px solid var(--text);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .member-content {
-            position: relative;
-        }
-
-        .member-photo-container {
-            position: relative;
-            padding-top: 100%;
-            overflow: hidden;
-            background: var(--accent);
-        }
-
-        .member-photo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            image-rendering: pixelated;
-        }
-
-        .member-info {
-            padding: 15px;
-            background: white;
-            border-top: 4px solid var(--text);
-        }
-
-        .member-name {
-            font-size: 1.2em;
-            margin-bottom: 8px;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .member-title {
-            font-size: 0.9em;
-            color: var(--secondary);
-            margin-bottom: 5px;
-        }
-
-        .member-education {
-            font-size: 0.8em;
-            color: var(--text);
-        }
-
-        /* 应式调整 */
-        @media (max-width: 768px) {
-            .team-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                gap: 20px;
-            }
-
-            .member-name {
-                font-size: 1em;
-            }
-
-            .member-title {
-                font-size: 0.8em;
-            }
-
-            .member-education {
-                font-size: 0.7em;
-            }
-        }
-
-        .intro-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .intro-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 3px solid var(--text);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .intro-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .intro-card.main {
-            grid-column: 1 / -1;
-            background: #1a1a1a;
-            padding: 25px;
-            color: #ffffff;
-        }
-
-        .intro-card.main h2 {
-            font-size: 1.6em;
-            margin-bottom: 12px;
-            color: #ffffff;
-        }
-
-        .intro-card.main p {
-            font-size: 0.9em;
-            max-width: 600px;
-            margin: 0 auto;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .intro-card.main .card-icon {
-            color: #ffffff;
-            opacity: 0.9;
-        }
-
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .intro-cards {
-                grid-template-columns: repeat(2, 1fr);  /* 平板上显示两列 */
-                gap: 15px;
-                padding: 0 15px;
-            }
-
-            .intro-card.main {
-                grid-column: 1 / -1;  /* 主卡片依然占满宽度 */
-                padding: 20px;
-            }
-
-            .intro-card.main h2 {
-                font-size: 1.3em;
-            }
-
-            .intro-card h3 {
-                font-size: 1em;
-            }
-
-            .intro-card p {
-                font-size: 0.8em;
-            }
-        }
-
-        /* 小屏幕手机适配 */
-        @media (max-width: 480px) {
-            .intro-cards {
-                grid-template-columns: 1fr;  /* 手机上显示单列 */
-                gap: 15px;
-            }
-
-            .intro-card {
-                padding: 15px;
-            }
-
-            .intro-card.main h2 {
-                font-size: 1.2em;
-            }
-
-            .intro-card.main p {
-                font-size: 0.8em;
-                line-height: 1.4;
-            }
-        }
-
-        /* 修改 team section 的 header 样式 */
-        #team header {
-            margin-top: 0;
-            margin-bottom: 30px;
-        }
-
-        /* 修改 glitch-container 的样式，增加下边距 */
-        .glitch-container {
-            text-align: center;
-            margin-bottom: 120px;
-            padding-top: 60px;
-        }
-
-        /* 修改 section 的样式，让第一屏只显示标题 */
-        #home {
-            height: 100vh;
-            min-height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-
-        /* 将intro-cards移动到第二屏 */
-        .intro-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 修改features section样式 */
-        #features {
-            min-height: auto;
-            padding: 60px 20px;
-            margin-top: 0;
-        }
-
-        /* 添加了解我们按钮的样式 */
-        .learn-more {
-            margin-top: 40px;
-        }
-
-        .learn-more-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border: 3px solid var(--text);
-            border-radius: 8px;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .learn-more-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            background: var(--text);
-        }
-
-        /* 修改首页布局，使按钮位置偏下 */
-        #home {
-            height: 100vh;
-            min-height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-
-        .glitch-container {
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;  /* 占满整个口高度 */
-            justify-content: center;  /* 垂直居中 */
-        }
-
-        /* 调整按钮位置 */
-        .learn-more {
-            position: absolute;
-            bottom: 15%;  /* 距离底部15% */
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* 添加平滑滚动效果 */
-        html {
-            scroll-behavior: smooth;  /* 添加平滑滚动 */
-        }
-
-        .learn-more-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border: 3px solid var(--text);
-            border-radius: 8px;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .learn-more-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            background: var(--text);
-        }
-
-        /* 修改团队标题样式 */
-        #team .pixel-title {
-            font-size: 3em;
-            color: var(--text);  /* 深色文字 */
-            text-shadow: 
-                3px 3px 0 #ffffff,  /* 白色阴影 */
-                6px 6px 0 var(--primary);  /* 主题色阴影 */
-            margin-bottom: 30px;
-        }
-
-        /* 修改副标样式，让它更加突出 */
-        #team .subtitle {
-            font-size: 0.9em;
-            color: var(--primary);  /* 使用主题色 */
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* 聊天框样式 */
-        .chat-box {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 320px;
-            height: 400px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
-            border: 1px solid #eee;
-        }
-
-        .chat-header {
-            padding: 15px 20px;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .chat-title {
-            font-size: 1em;
-            font-weight: 500;
-        }
-
-        .chat-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            background: #f8f9fa;
-        }
-
-        .message {
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .message.bot {
-            align-items: flex-start;
-        }
-
-        .message-content {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-
-        .message.bot .message-content {
-            background: white;
-            border: 1px solid #e0e0e0;
-            color: var(--text);
-        }
-
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-            .chat-box {
-                width: calc(100% - 40px);
-                height: 400px;
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-
-        /* 添加聊天图标样式 */
-        .chat-icon {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
-
-        .chat-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-icon span {
-            font-size: 1.8em;
-        }
-
-        /* 修改聊天框样式 */
-        .chat-box {
-            position: fixed;
-            bottom: 100px;  /* 调整位置，避免与图标重叠 */
-            right: 30px;
-            width: 320px;
-            height: 400px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
-            border: 1px solid #eee;
-            transition: all 0.3s ease;
-        }
-
-        /* 聊天选项样式 */
-        .chat-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .chat-option {
-            padding: 8px 12px;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
-        }
-
-        .chat-option:hover {
-            background: #e0e0e0;
-            transform: translateY(-2px);
-        }
-
-        /* 用户消息样式 */
-        .message.user {
-            align-items: flex-end;
-        }
-
-        .message.user .message-content {
-            background: var(--primary);
-            color: white;
-        }
-
-        .chat-input-container {
-            padding: 15px;
-            border-top: 1px solid #eee;
-            background: white;
-            display: flex;
-            gap: 10px;
-        }
-        
-        #chatInput {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            outline: none;
-            font-size: 0.9em;
-        }
-        
-        #sendMessage {
-            padding: 8px 15px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        #sendMessage:hover {
-            background: var(--text);
-        }
-
-        /* 加载动画样式 */
-        .typing-indicator {
-            display: flex;
-            gap: 4px;
-            padding: 8px 12px;
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--secondary);
-            border-radius: 50%;
-            animation: typingAnimation 1.4s infinite;
-            opacity: 0.3;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typingAnimation {
-            0%, 100% { opacity: 0.3; transform: translateY(0); }
-            50% { opacity: 1; transform: translateY(-4px); }
-        }
-    </style>
+    <title>Simple Way AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat-simple.css">
 </head>
 <body>
-    <!-- <div class="pixel-bg"></div> -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">
-                <!-- <span class="logo-emoji">🎮</span> -->
-                SIMPLE WAY
-            </a>
+            <a href="/" class="logo">SIMPLE WAY</a>
             <div class="nav-links">
-                <a href="#home">首页</a>
-                <a href="#team">团队</a>
-                <a href="#contact">联系我们</a>
+                <a href="/#home">首页</a>
+                <a href="/#team">团队</a>
+                <a href="/#contact">联系我们</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="section">
-        <div class="container">
-            <div class="glitch-container">
-                <h1 class="mega-title" data-text="SIMPLE WAY">SIMPLE WAY</h1>
-                <div class="learn-more">
-                    <a href="#features" class="learn-more-btn">了解我们</a>
+    <main>
+        <section class="hero">
+            <div class="word-cloud-container">
+                <div class="word-cloud"></div>
+            </div>
+            <h1>
+                SIMPLE WAY · 化繁为简
+            </h1>
+            <div class="mission-wrapper">
+                <p>为商业提供便捷，直达命脉。</p>
+            </div>
+            <button class="scroll-btn" onclick="scrollToNext()">了解更多</button>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">关于我们</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="highlight-text">
+                            我们是一群追逐AI浪潮的梦想家和实干家。
+                        </p>
+                        <p class="main-text">
+                            汇聚自世界顶尖学府的技术团队，我们不仅精通前沿算法，更懂得如何将创新转化为价值。从语言模型到计算机视觉，从全栈开发到系统架构，我们的专业广度与技术深度让每个项目都能得到最优解决方案。
+                        </p>
+                    </div>
+                    <div class="team-link-container">
+                        <a href="/team.html" class="team-link">
+                            <span class="team-link-text">了解我们的团队</span>
+                            <span class="team-link-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <button class="circle-btn" onclick="scrollToNext()">
+                        <svg class="arrow-icon" viewBox="0 0 24 24">
+                            <path d="M7 10l5 5 5-5"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="features" class="section">
-        <div class="container">
-            <div class="intro-cards">
-                <div class="intro-card main">
-                    <div class="card-icon">🚀</div>
-                    <h2>AI技术领者</h2>
-                    <p>深耕计算机视觉与大语言模型，为企业提供快速精准的AI解决方案</p>
+        <section id="capabilities" class="capabilities-section">
+            <div class="container">
+                <h2 class="section-title">我们能做什么？</h2>
+                <div class="capabilities-content">
+                    <div class="capabilities-intro">
+                        <p class="capabilities-headline">
+                            用AI的力量，为企业插上数字化转型的翅膀
+                        </p>
+                    </div>
+
+                    <div class="capabilities-grid">
+                        <div class="capability-item">
+                            <div class="capability-header">
+                                <div class="capability-icon">AI</div>
+                                <h3>AI模型定制</h3>
+                                <p class="main-capability">大语言模型微调与部署</p>
+                            </div>
+                            <ul class="capability-list">
+                                <li>企业知识库构建</li>
+                                <li>场景化模型训练</li>
+                                <li>私有化部署方案</li>
+                                <li>成本效益优化</li>
+                            </ul>
+                            <p class="value-prop">让AI真正理解您的业务，成为企业的智慧大脑</p>
+                        </div>
+
+                        <div class="capability-item">
+                            <div class="capability-header">
+                                <div class="capability-icon">Dev</div>
+                                <h3>全栈开发服务</h3>
+                                <p class="main-capability">一站式软件解决方案</p>
+                            </div>
+                            <ul class="capability-list">
+                                <li>Web应用开发</li>
+                                <li>移动端开发</li>
+                                <li>系统架构设计</li>
+                                <li>数据管道搭建</li>
+                            </ul>
+                            <p class="value-prop">将创新理念转化为实用工具，提升业务效率</p>
+                        </div>
+
+                        <div class="capability-item">
+                            <div class="capability-header">
+                                <div class="capability-icon">DX</div>
+                                <h3>数字化转型咨询</h3>
+                                <p class="main-capability">AI赋能业务</p>
+                            </div>
+                            <ul class="capability-list">
+                                <li>业务流程优化</li>
+                                <li>AI集成方案</li>
+                                <li>数据价值挖掘</li>
+                                <li>智能化改造</li>
+                            </ul>
+                            <p class="value-prop">用科技创新推动传统业务升级，开创增长新机遇</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="intro-card">
-                    <div class="card-icon">🤖</div>
-                    <h3>大语言模型应用</h3>
-                    <p>定制业级LLM模型打造智能对话与决策系统</p>
-                </div>
-                
-                <div class="intro-card">
-                    <div class="card-icon">👁️</div>
-                    <h3>计算机视觉技术</h3>
-                    <p>专业的视觉识别分析，解决工业检测与智能监控需求</p>
-                </div>
-                
-                <div class="intro-card">
-                    <div class="card-icon">⚡</div>
-                    <h3>软件开发集成</h3>
-                    <p>快速交付完整解决方案，助力企业AI转型升级</p>
+                <div class="scroll-indicator">
+                    <button class="circle-btn" onclick="scrollToNext()">
+                        <svg class="arrow-icon" viewBox="0 0 24 24">
+                            <path d="M7 10l5 5 5-5"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="team" class="section">
-        <div class="container">
-            <header>
-                <h1 class="pixel-title">我们的团队</h1>
-                <p class="subtitle">探索无限可能</p>
-            </header>
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2 class="section-title">我们做什么？</h2>
+                <div class="portfolio-container">
+                    <!-- 左箭头按钮 -->
+                    <button class="portfolio-arrow left" id="scrollLeft" aria-label="Previous">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15 18l-6-6 6-6"></path>
+                        </svg>
+                    </button>
 
-            <div class="team-grid">
-                <!-- 团队成员1 -->
-                <div class="team-member" data-member="alain">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="image/Alain.jpg" alt="Alain" class="member-photo">
+                    <!-- 项目卡片容器 -->
+                    <div class="portfolio-scroll">
+                        <div class="portfolio-card">
+                            <div class="card-image">
+                                <img src="image/garbage.png" alt="智能垃圾分类系统" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="card-content">
+                                <div class="content-wrapper">
+                                    <h3 class="card-title">智能垃圾分类系统</h3>
+                                    <p class="card-description">
+                                        基于计算机视觉的智能垃圾分类系统，通过深度学习模型实现垃圾的自动识别和分类。
+                                        系统集成了机械臂控制、传送带调度、数据实时分析等模块，实现了从垃圾投放、
+                                        智能分类、数据记录到处理流转的全流程自动化。目前已投入生产，
+                                        日均处理垃圾超过3吨，分类准确率达98%以上。
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="member-info">
-                            <div class="member-name">韩博喻 🚀</div>
-                            
-                            <div class="member-education">斯坦福大学硕士</div>
-                            <div class="member-title">大语言模型研究员/前华为研发员工</div>
+
+                        <div class="portfolio-card">
+                            <div class="card-content">
+                                <div class="content-wrapper">
+                                    <h3 class="card-title">智能知识库问答机器人</h3>
+                                    <p class="card-description">
+                                        为某知名车企定制的AI问答机器人，通过RAG技术实现精准的知识检索。
+                                        系统对企业文档进行深度清洗和向量化存储，结合微调后的大语言模型，
+                                        实现对用户询问的精准理解和回答。目前系统支持产品、服务、技术等
+                                        多个领域的智能问答，大幅提升了客服效率用户满意度。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-image">
+                                <img src="image/chatbot.png" alt="AI问答机器人" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 团队成员2 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="image/Barry.jpg" alt="Barry" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">李维恩 💡</div>
-                           
-                            <div class="member-education">麻省理工学院硕士</div>
-                            <div class="member-title">运筹学研究员/计算机视觉研究员</div>
-                        </div>
+                    <!-- 右箭头按钮 -->
+                    <button class="portfolio-arrow right" id="scrollRight" aria-label="Next">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">联系我们</h2>
+                <div class="contact-content">
+                    <div class="contact-intro">
+                        <p class="contact-headline">让我们一起开启创新之门</p>
                     </div>
-                </div>
-
-                <!-- 团队成员3 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="image/xinyu.jpg" alt="王新宇" class="member-photo">
+                    
+                    <div class="contact-info">
+                        <div class="info-item wechat-card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="info-icon">💬</div>
+                                    <div class="info-content">
+                                        <h3>微信咨询</h3>
+                                        <p>点击查看二维码</p>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="qr-code">
+                                        <img src="image/qrcode.JPG" alt="微信二维码" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="member-info">
-                            <div class="member-name">王新宇 🔮</div>
-                            <div class="member-education">麦吉尔大学博士</div>
-                            <div class="member-title">大模型量化/RAG研究员</div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h3>联系电话</h3>
+                                <p>(+86) 18188383927</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- 团队成员4 -->
-                <div class="team-member" data-member="chijj">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="image/chijj.jpg" alt="池纪君" class="member-photo">
+                        
+                        <div class="info-item">
+                            <div class="info-icon">✉️</div>
+                            <div class="info-content">
+                                <h3>电子邮件</h3>
+                                <p>feiyuzi51@gmail.com</p>
+                            </div>
                         </div>
-                        <div class="member-info">
-                            <div class="member-name">池纪君 🔬</div>
-                            <div class="member-education">北邮/多伦多大学硕士</div>
-                            <div class="member-title">算法工程师/ACM亚洲区域赛银牌</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 团队成员5 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="image/zhuhong.jpg" alt="李铸洪" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">李铸洪 🎯</div>
-                            <div class="member-education">华中科技大学/杜克大学硕士</div>
-                            <div class="member-title">机器学习工程师</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 团队成员6 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="image/hailin.jpg" alt="何海林" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">何海林 ⚡</div>
-                            <div class="member-education">三年互联网从业经验</div>
-                            <div class="member-title">系统架构工程师</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 团队成员7 -->
-                <div class="team-member">
-                    <div class="member-content">
-                        <div class="member-photo-container">
-                            <img src="image/yuchen.jpg" alt="华雨晨" class="member-photo">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">华雨晨 💫</div>
-                            <div class="member-education">麦吉尔大学</div>
-                            <div class="member-title">数据管道工程师/Java后端开发工程师</div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h3>公司地址</h3>
+                                <p>中国 · 成都</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="section contact-section">
-        <div class="contact-container">
-            <h2 class="contact-title">联系我们</h2>
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <div class="terminal-content">
-                    <div class="line">
-                        <span class="prompt">$</span> whoami
+        <section id="ai-chat" class="ai-chat-section">
+            <div class="container">
+                <h2 class="section-title">与AI聊聊</h2>
+                <div class="ai-chat-content">
+                    <!-- 复制聊天界面的结构 -->
+                    <div class="chat-header">
+                        <h3>在线咨询</h3>
                     </div>
-                    <div class="line">
-                        A team of AI enthusiasts who keep things simple
+                    <div class="chat-messages">
+                        <div class="message system">
+                            您好！我是Simple Way AI的智能助手，很高兴为您服务。
+                        </div>
                     </div>
-                    <div class="line">
-                        <span class="prompt">$</span> cat contact_info.txt
+                    <div class="chat-input">
+                        <input type="text" placeholder="请输入您的问题..." aria-label="Type a message">
+                        <button class="send-message" aria-label="Send message">发送</button>
                     </div>
-                    <div class="line">
-                        📍 Location: Chengdu, China
-                    </div>
-                    <div class="line">
-                        📞 Tel: (+86) 18188383927
-                    </div>
-                    <div class="line">
-                        📧 Email: feiyuzi51@gmail.com
-                    </div>
-                    <div class="line">
-                        🌐 Web: www.simpleway.xyz
-                    </div>
-                    <div class="line">
-                        <span class="prompt">$</span> echo "Let's build something cool together!" 
-                    </div>
-                    <div class="line blink">_</div>
                 </div>
             </div>
-
-            <div class="contact-cards">
-                <div class="contact-card">
-                    <div class="card-icon">💡</div>
-                    <h3>创意合作</h3>
-                    <p>有趣的想法？让我们一起把它变成现实</p>
-                </div>
-                <div class="contact-card">
-                    <div class="card-icon">🤝</div>
-                    <h3>加入我们</h3>
-                    <p>怀才不遇？我们正在寻找同道中人</p>
-                </div>
-                <div class="contact-card">
-                    <div class="card-icon">🎮</div>
-                    <h3>技术交流</h3>
-                    <p>让我们来场头脑风暴</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="chat-icon" id="chatIcon">
-        <span>💬</span>
+        </section>
+    </main>
+    <div class="chat-bubble">
+        <button class="chat-bubble-button" aria-label="Open chat">
+            <span class="chat-bubble-icon">💬</span>
+        </button>
     </div>
 
-    <div class="chat-box" id="chatBox" style="display: none;">
+    <div class="chat-container">
         <div class="chat-header">
-            <div class="chat-title">Simple Way AI</div>
-            <button class="chat-close" id="chatClose">×</button>
+            <h3>在线咨询</h3>
+            <button class="close-chat" aria-label="Close chat">×</button>
         </div>
         <div class="chat-messages">
-            <div class="message bot">
-                <div class="message-content">
-                    Hi，我们是simple way。一支由海内外精英组成的AI技术团队。
-                </div>
-            </div>
-            <div class="message bot">
-                <div class="message-content">
-                    请问您想了解什么？
-                </div>
-            </div>
-            <div class="message bot">
-                <div class="message-content chat-options">
-                    <div class="chat-option" data-option="team">了解simple way</div>
-                    <div class="chat-option" data-option="projects">查看项目案例</div>
-                    <div class="chat-option" data-option="contact">获取联系方式</div>
-                </div>
+            <div class="message system">
+                您好！我是Simple Way AI的智能助手，很高兴为您服务。
             </div>
         </div>
-        <div class="chat-input-container">
-            <input type="text" id="chatInput" placeholder="输入您的问题...">
-            <button id="sendMessage">发送</button>
+        <div class="chat-input">
+            <input type="text" placeholder="请输入您的问题..." aria-label="Type a message">
+            <button class="send-message" aria-label="Send message">发送</button>
         </div>
     </div>
 
-    <script src="js/chat.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat-ai.js"></script>
+    <script src="js/chat-simple.js"></script>
 </body>
 </html>

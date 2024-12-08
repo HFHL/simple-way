@@ -1,0 +1,214 @@
+.team-page {
+    padding: 4rem 0;
+    background: var(--background);
+}
+
+.team-members {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 4rem;
+    padding: 0 2rem;
+}
+
+.member-detail {
+    display: flex;
+    gap: 2rem;
+    padding: 2.5rem;
+    background: var(--background);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    border: none;
+    background: 
+        linear-gradient(var(--background), var(--background)) padding-box,
+        linear-gradient(145deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.02) 100%) border-box;
+    border: 1px solid transparent;
+    box-shadow: 
+        0 1px 2px rgba(0,0,0,0.02),
+        0 4px 12px rgba(0,0,0,0.02);
+}
+
+.member-detail:hover {
+    transform: translateY(-5px);
+    background: 
+        linear-gradient(var(--background), var(--background)) padding-box,
+        linear-gradient(145deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.04) 100%) border-box;
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.02),
+        0 8px 24px rgba(0,0,0,0.04);
+}
+
+.member-photo-wrapper {
+    flex: 0 0 160px;
+}
+
+.member-photo-wrapper img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.member-info {
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.member-info h2 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+    color: var(--primary);
+}
+
+.member-role {
+    font-size: 0.95rem;
+    color: #505050;
+    margin-bottom: 0.2rem;
+}
+
+.member-education {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.member-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--secondary);
+}
+
+.member-description p {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+    .team-members {
+        gap: 2.5rem 3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .team-members {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+    }
+
+    .member-detail {
+        gap: 2.5rem;
+    }
+
+    .member-photo-wrapper {
+        flex: 0 0 180px;
+    }
+
+    .member-photo-wrapper img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .member-detail {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .member-photo-wrapper {
+        flex: 0 0 auto;
+    }
+
+    .member-info {
+        padding-right: 0;
+    }
+}
+
+/* 添加悬浮返回按钮样式 */
+.float-back-btn {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: var(--background);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 30px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.float-back-btn:hover {
+    background: var(--primary);
+    color: var(--background);
+    transform: translateX(-50%) translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.back-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.float-back-btn:hover .back-icon {
+    transform: translateX(-5px);
+}
+
+.back-text {
+    font-weight: 500;
+}
+
+/* 在小屏幕上调整按钮样式 */
+@media (max-width: 768px) {
+    .float-back-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* 添加装饰性角标 */
+.member-detail::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 24px;
+    height: 24px;
+    border-top: 2px solid var(--light-gray);
+    border-right: 2px solid var(--light-gray);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.member-detail:hover::before {
+    border-color: var(--primary);
+    opacity: 0.8;
+}
+
+/* 添加底部装饰线 */
+.member-detail::after {
+    content: '';
+    position: absolute;
+    bottom: 1.5rem;
+    left: 2.5rem;
+    width: 60px;
+    height: 2px;
+    background: var(--light-gray);
+    transition: all 0.3s ease;
+}
+
+.member-detail:hover::after {
+    width: 100px;
+    background: var(--primary);
+} 
