@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         content: systemPrompt
     }, {
         role: "assistant",
-        content: "您好！我是Simple Way AI���智能助手，很高兴为您服务。"
+        content: "您好！我是Simple Way AI的智能助手，很高兴为您服务。"
     }];
 
     // 发送消息的主函数
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return div;
     }
 
-    // 添加消息到聊天框
+    // 添���消息到聊天框
     async function addMessage(text, type, messagesContainer) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message', type);
@@ -117,10 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
-
-    // 初始化显示欢迎消息
-    addMessage("您好！我是Simple Way AI的智能助手，很高兴为您服务。", 'system', floatMessages);
-    // addMessage("您好！我是Simple Way AI的智能助手，很高兴为您服务。", 'system', pageMessages);
 
     // 处理滚动事件
     const handleScroll = () => {
