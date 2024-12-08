@@ -48,7 +48,7 @@
                         </p>
                     </div>
                     <div class="team-link-container">
-                        <a href="/team.html" class="team-link">
+                        <a href="/team.html" class="team-link" onclick="return closeAndRedirect(event, '/team.html')">
                             <span class="team-link-text">了解我们的团队</span>
                             <span class="team-link-icon">→</span>
                         </a>
@@ -167,7 +167,7 @@
                                     <h3 class="card-title">智能知识库问答机器人</h3>
                                     <p class="card-description">
                                         为某知名车企定制的AI问答机器人，通过RAG技术实现精准的知识检索。
-                                        系统对企业文档进��深度清洗和向量化存储，结合微调后的大语言模型，
+                                        系统对企业文档进行深度清洗和向量化存储，结合微调后的大语言模型，
                                         实现对用户询问的精准理解和回答。目前系统支持产品、服务、技术等
                                         多个领域的智能问答，大幅提升了客服效率用户满意度。
                                     </p>
@@ -289,5 +289,27 @@
     <script src="js/main.js"></script>
     <script src="js/chat-ai.js"></script>
     <script src="js/chat-simple.js"></script>
+    <script>
+    function closeAndRedirect(event, url) {
+        event.preventDefault();  // 阻止默认跳转
+        const chatContainer = document.querySelector('.chat-container');
+        
+        if (chatContainer.classList.contains('active')) {
+            chatContainer.classList.remove('active');
+            chatContainer.style.opacity = '0';
+            chatContainer.style.visibility = 'hidden';
+            
+            // 等待动画完成后再跳转
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300);  // 与 CSS transition 时间一致
+            return false;
+        }
+        
+        // 如果聊天框本来就是关闭的，直接跳转
+        window.location.href = url;
+        return false;
+    }
+    </script>
 </body>
 </html>

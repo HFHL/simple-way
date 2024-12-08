@@ -163,5 +163,31 @@
         <span class="back-icon">←</span>
         <span class="back-text">返回首页</span>
     </button>
+
+    <div class="chat-bubble">
+        <button class="chat-bubble-button" aria-label="Open chat">
+            <span class="chat-bubble-icon">💬</span>
+        </button>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h3>在线咨询</h3>
+            <button class="close-chat" aria-label="Close chat">×</button>
+        </div>
+        <div class="chat-messages">
+            <div class="message system">
+                您好！我是Simple Way AI的智能助手，很高兴为您服务。
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="请输入您的问题..." aria-label="Type a message">
+            <button class="send-message" aria-label="Send message">发送</button>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="css/chat-simple.css">
+    <script src="js/chat-ai.js"></script>
+    <script src="js/chat-simple.js"></script>
 </body>
 </html> 
