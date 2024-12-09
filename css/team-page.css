@@ -110,6 +110,34 @@
     }
 }
 
+@media (max-width: 768px) {
+    .team-page {
+        padding: 2rem 0;
+    }
+
+    .team-members {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .member-detail {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .member-photo-wrapper {
+        flex: 0 0 auto;
+    }
+
+    .member-info {
+        padding-right: 0;
+    }
+}
+
 @media (max-width: 576px) {
     .member-detail {
         flex-direction: column;
@@ -124,6 +152,21 @@
 
     .member-info {
         padding-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-page {
+        padding: 1.5rem 0;
+    }
+
+    .member-detail {
+        padding: 1.2rem;
+    }
+
+    .member-photo-wrapper img {
+        width: 100px;
+        height: 100px;
     }
 }
 
