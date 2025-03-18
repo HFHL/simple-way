@@ -6,6 +6,7 @@
     <title>Simple Way AI</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/chat-simple.css">
+    <link rel="stylesheet" href="css/video-player.css">
 </head>
 <body>
     <nav>
@@ -146,7 +147,12 @@
                     <div class="portfolio-scroll">
                         <div class="portfolio-card">
                             <div class="card-image">
-                                <img src="image/garbage.png" alt="智能垃圾分类系统" style="width: 100%; height: 100%; object-fit: cover;">
+                                <div class="video-trigger" data-video-src="video/garbage.mp4">
+                                    <div class="video-cover">
+                                        <img src="image/garbage.png" alt="智能垃圾分类系统">
+                                    </div>
+                                    <div class="video-play-icon"></div>
+                                </div>
                             </div>
                             <div class="card-content">
                                 <div class="content-wrapper">
@@ -289,6 +295,7 @@
     <script src="js/main.js"></script>
     <script src="js/chat-ai.js"></script>
     <script src="js/chat-simple.js"></script>
+    <script src="js/video-player.js"></script>
     <script>
     function closeAndRedirect(event, url) {
         event.preventDefault();  // 阻止默认跳转

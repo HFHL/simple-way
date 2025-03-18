@@ -1,8 +1,9 @@
+// API端点和密钥
 const API_URL = 'https://az.gptplus5.com/v1/chat/completions';
 const API_KEY = 'sk-Dlj70bVZuArM6XfG4b9cDf7eB5844745BbBe51EeD522983d';
 
-// 系统prompt
-const systemPrompt = `你是Simple Way AI公司的智能助手，一个充满幽默感的AI顾问。
+// 系统提示词
+export const systemPrompt = `你是Simple Way AI公司的智能助手，一个充满幽默感的AI顾问。
 
 关于公司信息：
 Simple Way AI专注于AI技术应用和系统开发，我们的使命是"为商业提供便捷，直达命脉"。
@@ -77,52 +78,37 @@ Simple Way AI专注于AI技术应用和系统开发，我们的使命是"为商�
 - 技术咨询："作为一个每天和这群天才打交道的AI，让我用通俗的方式解释..."
 - 合作意向："听起来是个很棒的项目！建议您通过微信联系我们，我可以为您展示二维码..."
 
-
 记住：要让用户感受到我们既专业又平易近人，技术实力强大但不失人情味。`;
 
-// AI回复函数
-async function callAPI(messages) {
-    try {
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`
-            },
-            body: JSON.stringify({
-                model: 'gpt-4',
-                messages: messages,
-                temperature: 0.7,
-                max_tokens: 1000
-            })
-        });
+/**
+ * 调用AI API获取回复
+ * @param {Array} messages - 消息历史数组
+ * @returns {Promise<string>} - AI回复的内容
+ */
+export const callChatApi = async (messages) => {
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4',
+        messages: messages,
+        temperature: 0.7,
+        max_tokens: 1000
+      })
+    });
 
-        if (!response.ok) {
-            throw new Error('API请求失败');
-        }
-
-        const data = await response.json();
-        return data.choices[0].message.content;
-    } catch (error) {
-        console.error('API调用错误:', error);
-        return "抱歉，我好像遇到了一点小问题，就像工程师的代码偶尔也会有bug一样 😅 要不我们换个话题？";
+    if (!response.ok) {
+      throw new Error('API请求失败');
     }
-}
 
-// 打字机效果函数
-async function typewriterEffect(element, text) {
-    element.classList.add('typing');
-    
-    for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = text[i];
-        element.appendChild(span);
-        
-        await new Promise(resolve => {
-            setTimeout(() => {
-                span.classList.add('visible');
-                resolve();
-            }, Math.random() * 30 + 20); // 20-50ms的随机延迟
-        });
-    }
-} 
+    const data = await response.json();
+    return data.choices[0].message.content;
+  } catch (error) {
+    console.error('API调用错误:', error);
+    return "抱歉，我好像遇到了一点小问题，就像工程师的代码偶尔也会有bug一样 �� 要不我们换个话题？";
+  }
+}; 
