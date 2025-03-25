@@ -94,6 +94,27 @@ main {
     background: var(--light-gray);
 }
 
+.language-toggle {
+    background: transparent;
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.4rem 0.7rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.language-toggle:hover {
+    background: var(--light-gray);
+}
+
+.language-toggle.english {
+    background: var(--primary);
+    color: var(--background);
+}
+
 .logo {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -413,7 +434,7 @@ main {
     color: white;
 }
 
-/* DX模���的颜色 - 使用柔和的绿色 */
+/* DX模块的颜色 - 使用柔和的绿色 */
 .capability-item:nth-child(3) .capability-icon {
     background: rgba(68, 190, 124, 0.15);
     color: rgb(68, 190, 124);
