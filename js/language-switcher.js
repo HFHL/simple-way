@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'nav_portfolio': {
             'chinese': '案例',
-            'english': 'Portfolio'
+            'english': 'Project Highlights'
         },
         'nav_contact': {
             'chinese': '联系我们',
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'hero_mission': {
             'chinese': '为商业提供便捷，直达命脉。',
-            'english': 'Providing business with convenience, reaching the core directly.'
+            'english': 'Empowering businesses with speed and precision.'
         },
         'hero_button': {
             'chinese': '了解更多',
@@ -47,11 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'about_highlight': {
             'chinese': '我们是一群追逐AI浪潮的梦想家和实干家。',
-            'english': 'We are dreamers and doers riding the AI wave.'
+            'english': 'We are a group of dreamers and doers riding the wave of AI.'
         },
         'about_description': {
             'chinese': '汇聚自世界顶尖学府的技术团队，我们不仅精通前沿算法，更懂得如何将创新转化为价值。从语言模型到计算机视觉，从全栈开发到系统架构，我们的专业广度与技术深度让每个项目都能得到最优解决方案。',
-            'english': 'Our technical team, gathered from the world\'s top universities, not only masters cutting-edge algorithms but also knows how to transform innovation into value. From language models to computer vision, from full-stack development to system architecture, our professional breadth and technical depth enable optimal solutions for every project.'
+            'english': 'Our technical team comes from the world\'s top universities. We not only master cutting-edge algorithms, but also know how to turn innovation into real value. From language models to computer vision, from full-stack development to system architecture, our professional capabilities provide optimal solutions for every project.'
         },
         'about_team_link': {
             'chinese': '了解我们的团队',
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'capability_dev_main': {
             'chinese': '一站式软件解决方案',
-            'english': 'One-stop software solutions'
+            'english': 'Comprehensive end-to-end software solutions'
         },
         'capability_dev_item1': {
             'chinese': 'Web应用开发',
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'capability_dev_value': {
             'chinese': '将创新理念转化为实用工具，提升业务效率',
-            'english': 'Transform innovative ideas into practical tools that enhance business efficiency'
+            'english': 'Transform innovative ideas into practical tools that boost business performance'
         },
         
         'capability_dx_title': {
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'capability_dx_value': {
             'chinese': '用科技创新推动传统业务升级，开创增长新机遇',
-            'english': 'Drive traditional business upgrades with technological innovation, creating new growth opportunities'
+            'english': 'Empowering traditional industries with tech innovation and create fresh avenues for growth'
         },
         
         // Portfolio section
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'portfolio_garbage_description': {
             'chinese': '基于计算机视觉的智能垃圾分类系统，通过深度学习模型实现垃圾的自动识别和分类。系统集成了机械臂控制、传送带调度、数据实时分析等模块，实现了从垃圾投放、智能分类、数据记录到处理流转的全流程自动化。目前已投入生产，日均处理垃圾超过3吨，分类准确率达98%以上。',
-            'english': 'A computer vision-based intelligent waste sorting system that uses deep learning models for automatic waste recognition and classification. The system integrates mechanical arm control, conveyor belt scheduling, real-time data analysis, and other modules to achieve full-process automation from waste disposal, intelligent sorting, data recording to processing circulation. Currently in production, it processes over 3 tons of waste daily with a classification accuracy exceeding 98%.'
+            'english': 'A computer vision-based intelligent waste sorting system that uses deep learning models for automatic waste recognition and classification. The system integrates mechanical arm control, conveyor belt scheduling, real-time data analysis, and other modules to achieve full-process automation from waste disposal, intelligent sorting, data recording to processing circulation. Currently in operation, the system processes over 3 tons of waste per day with a classification accuracy over 98%.'
         },
         'portfolio_chatbot_title': {
             'chinese': '智能知识库问答机器人',
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'portfolio_chatbot_description': {
             'chinese': '为某知名车企定制的AI问答机器人，通过RAG技术实现精准的知识检索。系统对企业文档进行深度清洗和向量化存储，结合微调后的大语言模型，实现对用户询问的精准理解和回答。目前系统支持产品、服务、技术等多个领域的智能问答，大幅提升了客服效率用户满意度。',
-            'english': 'A customized AI Q&A bot for a well-known automotive company, achieving precise knowledge retrieval through RAG technology. The system performs deep cleaning and vector storage of company documents, combined with fine-tuned large language models, to achieve accurate understanding and answering of user inquiries. Currently, the system supports intelligent Q&A in multiple areas such as products, services, and technology, significantly improving customer service efficiency and user satisfaction.'
+            'english': 'A customized AI Q&A bot for a well-known automotive company, achieving precise knowledge retrieval through RAG technology. The system performs deep cleaning and vector storage of company documents, combined with fine-tuned large language models, to achieve accurate understanding and answering of user inquiries. The system currently supports intelligent Q&A across multiple domains, including products, services, and technology, significantly improving customer service efficiency and user satisfaction.'
         },
         
         // Contact section
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'chat_greeting': {
             'chinese': '您好！我是Simple Way AI的智能助手，很高兴为您服务。',
-            'english': 'Hello! I am the intelligent assistant of Simple Way AI, happy to be of service.'
+            'english': 'Hello! I am the intelligent assistant of Simple Way AI - happy to help!'
         },
         'chat_input_placeholder': {
             'chinese': '请输入您的问题...',
