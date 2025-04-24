@@ -1,6 +1,6 @@
 class AIChat {
     constructor() {
-        this.apiKey = 'sk-Dlj70bVZuArM6XfG4b9cDf7eB5844745BbBe51EeD522983d  ';
+        this.apiKey = 'sk-uDBNMgPgG0C0MtnJ02C4E8316a3544BdAc8643B9A8F61b0b';
         this.baseUrl = 'https://az.gptplus5.com/v1';
         this.chatMessages = document.querySelector('.chat-messages');
         this.chatInput = document.getElementById('chatInput');
