@@ -1,5 +1,5 @@
 const API_URL = 'https://az.gptplus5.com/v1/chat/completions';
-const API_KEY = 'sk-Dlj70bVZuArM6XfG4b9cDf7eB5844745BbBe51EeD522983d';
+const API_KEY = 'sk-uDBNMgPgG0C0MtnJ02C4E8316a3544BdAc8643B9A8F61b0b';
 
 // 系统prompt
 const systemPrompt = `你是Simple Way AI公司的智能助手，一个充满幽默感的AI顾问。
@@ -90,7 +90,7 @@ async function callAPI(messages) {
                 'Authorization': `Bearer ${API_KEY}`
             },
             body: JSON.stringify({
-                model: 'gpt-4',
+                model: 'gpt-4o-mini',
                 messages: messages,
                 temperature: 0.7,
                 max_tokens: 1000
